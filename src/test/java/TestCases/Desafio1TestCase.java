@@ -1,6 +1,9 @@
 package TestCases;
 
 import Tasks.ValidacoesTask;
+import Util.Report;
+import Util.ScreenShot;
+import com.aventstack.extentreports.Status;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,9 +26,7 @@ public class Desafio1TestCase {
 
     @Before
     public void setUp() {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--start-maximized");
-//        options.addArguments("--headless");
+
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://shopcart-challenge.4all.com/");
@@ -43,15 +44,18 @@ public class Desafio1TestCase {
 
         homeTask.acessCategoriaDoces();
         docesTask.addDocesToCart();
+        Report.log(Status.INFO, "Doces adicionados no carrinho", ScreenShot.capture(driver));
         homeTask.acessTodasCategorias();
-        homeTask.acessCart();
+        Report.log(Status.INFO, "Acessa todas as categorias", ScreenShot.capture(driver));homeTask.acessCart();
         cartTask.addQtdBrigadeirosToCart();
         cartTask.addQtdBrigadeirosToCart();
         cartTask.addQtdBrigadeirosToCart();
         cartTask.addQtdBrigadeirosToCart();
+        Report.log(Status.INFO, "Aumenta em 4 a quantidade de brigadeiros.", ScreenShot.capture(driver));
         cartTask.finalizarCompras();
-//		validar msg Pedido Realizado com Sucesso! e clicar em fechar
+        Report.log(Status.INFO, "Finaliza as compras", ScreenShot.capture(driver));
         validacoesTask.isCompraSucesso();
+        Report.log(Status.INFO, "Mensagem de sucesso", ScreenShot.capture(driver));
         validacoesTask.isfecharPopUpMsgSucesso();
 
     }
