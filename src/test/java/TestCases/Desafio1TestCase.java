@@ -1,8 +1,8 @@
-package TestCases;
+package testCases;
 
-import Tasks.ValidacoesTask;
-import Util.Report;
-import Util.ScreenShot;
+import tasks.ValidacoesTask;
+import util.Report;
+import util.ScreenShot;
 import com.aventstack.extentreports.Status;
 import org.junit.After;
 import org.junit.Before;
@@ -10,19 +10,16 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Tasks.CartPageTask;
-import Tasks.DocesPageTask;
-import Tasks.HomeTask;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.util.concurrent.TimeUnit;
+import tasks.CarrinhoComprasTask;
+import tasks.DocesTask;
+import tasks.HomeTask;
 
 public class Desafio1TestCase {
     private WebDriver driver;
-    private HomeTask homeTask;
-    private DocesPageTask docesTask;
-    private CartPageTask cartTask;
-    private ValidacoesTask validacoesTask;
+    private HomeTask home;
+    private DocesTask doces;
+    private CarrinhoComprasTask carrinhoCompras;
+    private ValidacoesTask validacoes;
 
     @Before
     public void setUp() {
@@ -30,33 +27,34 @@ public class Desafio1TestCase {
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://shopcart-challenge.4all.com/");
+        driver.manage().window().maximize();
 
-        homeTask = new HomeTask(driver);
-        cartTask = new CartPageTask(driver);
-        docesTask = new DocesPageTask(driver);
-        validacoesTask= new ValidacoesTask(driver);
+        home = new HomeTask(driver);
+        carrinhoCompras = new CarrinhoComprasTask(driver);
+        doces = new DocesTask(driver);
+        validacoes = new ValidacoesTask(driver);
 
     }
 
     @Test
     public void testMain() {
-        driver.manage().window().maximize();
 
-        homeTask.acessCategoriaDoces();
-        docesTask.addDocesToCart();
+        home.acessaCategoriaDoces();
+        doces.adicionaDocesNoCarrinho();
         Report.log(Status.INFO, "Doces adicionados no carrinho", ScreenShot.capture(driver));
-        homeTask.acessTodasCategorias();
-        Report.log(Status.INFO, "Acessa todas as categorias", ScreenShot.capture(driver));homeTask.acessCart();
-        cartTask.addQtdBrigadeirosToCart();
-        cartTask.addQtdBrigadeirosToCart();
-        cartTask.addQtdBrigadeirosToCart();
-        cartTask.addQtdBrigadeirosToCart();
+        home.acessaTodasCategorias();
+        Report.log(Status.INFO, "Acessa todas as categorias", ScreenShot.capture(driver));
+        home.acessaCarrinhoCompras();
+        carrinhoCompras.aumentaQtdBrigadeirosNoCarrinho();
+        carrinhoCompras.aumentaQtdBrigadeirosNoCarrinho();
+        carrinhoCompras.aumentaQtdBrigadeirosNoCarrinho();
+        carrinhoCompras.aumentaQtdBrigadeirosNoCarrinho();
         Report.log(Status.INFO, "Aumenta em 4 a quantidade de brigadeiros.", ScreenShot.capture(driver));
-        cartTask.finalizarCompras();
+        carrinhoCompras.finalizarCompras();
         Report.log(Status.INFO, "Finaliza as compras", ScreenShot.capture(driver));
-        validacoesTask.isCompraSucesso();
+        validacoes.validaMsgCompraSucesso();
         Report.log(Status.INFO, "Mensagem de sucesso", ScreenShot.capture(driver));
-        validacoesTask.isfecharPopUpMsgSucesso();
+        validacoes.fecharPopUpMsgSucesso();
 
     }
 

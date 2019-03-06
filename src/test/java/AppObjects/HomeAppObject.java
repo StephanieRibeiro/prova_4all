@@ -1,4 +1,4 @@
-package AppObjects;
+package appObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,27 +12,27 @@ public class HomeAppObject {
         this.driver = driver;
     }
 
-    public WebElement getOpenCategoriesButton() {
+    public WebElement getAbreCategoriasButton() {
         return this.driver.findElement(By.id("open-categories-btn"));
     }
 
-    public WebElement getCategorieDocesButton() {
+    public WebElement getCategoriaDocesButton() {
         return this.driver.findElement(By.id("category-1"));
     }
 
-    public WebElement getCategorieTodosButton() {
+    public WebElement getCategoriaTodosButton() {
         return this.driver.findElement(By.id("category-all"));
     }
 
-    public WebElement getCartButton() {
+    public WebElement getCarrinhoButton() {
         return this.driver.findElement(By.id("cart-btn"));
     }
 
-    public WebElement getCategorieBebidasButton() {
+    public WebElement getCategoriaBebidasButton() {
         return this.driver.findElement(By.id("category-0"));
     }
 
-    public WebElement getAddRissolesToCart() {
+    public WebElement getAdicionaRissolesAoCarrinho() {
         return this.driver.findElement(By.id("add-product-3-btn"));
     }
 

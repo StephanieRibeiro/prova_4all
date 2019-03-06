@@ -1,6 +1,6 @@
-package Tasks;
+package tasks;
 
-import AppObjects.HomeAppObject;
+import appObjects.HomeAppObject;
 import org.openqa.selenium.WebDriver;
 
 public class HomeTask {
@@ -10,26 +10,26 @@ public class HomeTask {
         this.home = new HomeAppObject(driver);
     }
 
-    public void acessCategoriaDoces() {
-        home.getOpenCategoriesButton().click();
-        home.getCategorieDocesButton().click();
+    public void acessaCategoriaDoces() {
+        home.getAbreCategoriasButton().click();
+        home.getCategoriaDocesButton().click();
     }
 
-    public void acessCart() {
-        home.getCartButton().click();
+    public void acessaCarrinhoCompras() {
+        home.getCarrinhoButton().click();
     }
-    public void acessTodasCategorias() {
-        home.getOpenCategoriesButton().click();
-        home.getCategorieTodosButton().click();
-    }
-
-    public void acessCategoriaBebidas() {
-        home.getOpenCategoriesButton().click();
-        home.getCategorieBebidasButton().click();
+    public void acessaTodasCategorias() {
+        home.getAbreCategoriasButton().click();
+        home.getCategoriaTodosButton().click();
     }
 
-    public void addRissolesToCart() {
-        home.getAddRissolesToCart().click();
+    public void acessaCategoriaBebidas() {
+        home.getAbreCategoriasButton().click();
+        home.getCategoriaBebidasButton().click();
+    }
+
+    public void adicionaRissolesAoCarrinho() {
+        home.getAdicionaRissolesAoCarrinho().click();
     }
 
 

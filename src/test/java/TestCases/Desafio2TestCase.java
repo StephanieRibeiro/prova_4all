@@ -1,11 +1,11 @@
-package TestCases;
+package testCases;
 
-import Tasks.BebidasPageTask;
-import Tasks.CartPageTask;
-import Tasks.HomeTask;
-import Tasks.ValidacoesTask;
-import Util.Report;
-import Util.ScreenShot;
+import tasks.BebidasTask;
+import tasks.CarrinhoComprasTask;
+import tasks.HomeTask;
+import tasks.ValidacoesTask;
+import util.Report;
+import util.ScreenShot;
 import com.aventstack.extentreports.Status;
 import org.junit.After;
 import org.junit.Before;
@@ -15,9 +15,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Desafio2TestCase {
     private WebDriver driver;
-    private HomeTask homeTask;
-    private BebidasPageTask bebidasTask;
-    private CartPageTask cartTask;
+    private HomeTask home;
+    private BebidasTask bebidas;
+    private CarrinhoComprasTask carrinhoCompras;
     private ValidacoesTask validacoes;
 
     @Before
@@ -25,50 +25,47 @@ public class Desafio2TestCase {
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://shopcart-challenge.4all.com/");
+        driver.manage().window().maximize();
 
-        homeTask = new HomeTask(driver);
-        cartTask = new CartPageTask(driver);
-        bebidasTask = new BebidasPageTask(driver);
+        home = new HomeTask(driver);
+        carrinhoCompras = new CarrinhoComprasTask(driver);
+        bebidas = new BebidasTask(driver);
         validacoes = new ValidacoesTask(driver);
-
     }
 
     @Test
     public void testMain() {
-        driver.manage().window().maximize();
 
-        homeTask.acessCategoriaBebidas();
-        bebidasTask.addBebidasToCart();
+        home.acessaCategoriaBebidas();
+        bebidas.adicionaBebidasAoCarrinho();
         Report.log(Status.INFO, "Adiciona as bebidas ao carrinho", ScreenShot.capture(driver));
-        homeTask.acessTodasCategorias();
-        homeTask.addRissolesToCart();
+        home.acessaTodasCategorias();
+        home.adicionaRissolesAoCarrinho();
         Report.log(Status.INFO, "Rissole adicionado ao carrinho", ScreenShot.capture(driver));
-        homeTask.acessCart();
+        home.acessaCarrinhoCompras();
         Report.log(Status.INFO, "Acessa o carrinho", ScreenShot.capture(driver));
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
-        cartTask.addQtdRissolesToCart();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
+        carrinhoCompras.aumentaQtdRissolesNoCarrinho();
         Report.log(Status.INFO, "Aumenta em 9 a qtd de rissoles no carrinho", ScreenShot.capture(driver));
-        cartTask.rmvQtdRissolesToCart();
-        cartTask.rmvQtdRissolesToCart();
-        cartTask.rmvQtdRissolesToCart();
-        cartTask.rmvQtdRissolesToCart();
-        cartTask.rmvQtdRissolesToCart();
+        carrinhoCompras.diminuiQtdRissolesNoCarrinho();
+        carrinhoCompras.diminuiQtdRissolesNoCarrinho();
+        carrinhoCompras.diminuiQtdRissolesNoCarrinho();
+        carrinhoCompras.diminuiQtdRissolesNoCarrinho();
+        carrinhoCompras.diminuiQtdRissolesNoCarrinho();
         Report.log(Status.INFO, "Diminui em 5 a qtd de rissoles no carrinho", ScreenShot.capture(driver));
-//		validar de Qtd
-        validacoes.isQtdRisoles();
+        validacoes.verificaQtdRisolesNoCarrinho();
 
-        cartTask.finalizarCompras();
+        carrinhoCompras.finalizarCompras();
         Report.log(Status.INFO, "Finaliza compra Sucesso", ScreenShot.capture(driver));
-//		validar msg Pedido Realizado com Sucesso! e clicar em fechar
-        validacoes.isCompraSucesso();
-        validacoes.isfecharPopUpMsgSucesso();
+        validacoes.validaMsgCompraSucesso();
+        validacoes.fecharPopUpMsgSucesso();
 
     }
 

@@ -1,6 +1,6 @@
-package Tasks;
+package tasks;
 
-import AppObjects.ValidacoesAppObject;
+import appObjects.ValidacoesAppObject;
 import org.openqa.selenium.WebDriver;
 
 public class ValidacoesTask {
@@ -10,15 +10,15 @@ public class ValidacoesTask {
         this.validacoes = new ValidacoesAppObject(driver);
     }
 
-    public boolean isCompraSucesso (){
+    public boolean validaMsgCompraSucesso(){
         return validacoes.getMensagemSucessoLabel().getText().contains("Pedido realizado com sucesso!");
     }
 
-    public void isfecharPopUpMsgSucesso(){
+    public void fecharPopUpMsgSucesso(){
         validacoes.getFecharPopUpMensagemButton().click();
     }
 
-    public void isQtdRisoles(){
+    public void verificaQtdRisolesNoCarrinho(){
         validacoes.getQtdRisolesLabel().getText().equals("5");
     }
 
